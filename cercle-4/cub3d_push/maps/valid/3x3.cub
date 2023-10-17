@@ -1,0 +1,16 @@
+SO ./textures/minecraft/diamond.png
+NO ./textures/minecraft/grass.png
+WE ./textures/minecraft/bale.png
+
+F 0,102,0
+C 0,70,200
+EA ./textures/minecraft/sandstone.png
+
+
+111
+1N01
+111
+
+
+
+

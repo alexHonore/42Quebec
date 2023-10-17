@@ -1,0 +1,12 @@
+WE ./wtf/grass.png
+NO ./textures/minecraft/blackstone.png
+SO ./textures/minecraft/bale.png
+EA ./textures/minecraft/sandstone.png
+
+
+F 220,100,0
+C 225,30,0
+
+111
+1E1
+111
