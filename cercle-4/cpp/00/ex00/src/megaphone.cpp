@@ -2,22 +2,22 @@
 #include <iostream>
 // using namespace std;
 
-int main(int argc, char const *argv[])
+int main(int argc, char const **argv)
 {
 	int i = 0;
-	int ii = 1;
+	int j = 1;
 
 	if (argc > 1)
 	{
-		while (argv[ii])
+		while (argv[j])
 		{
 			i = 0;
-			while (argv[ii][i])
+			while (argv[j][i])
 			{
-				std::cout << (char)std::toupper(argv[ii][i]);
+				std::cout << (char)std::toupper(argv[j][i]);
 				i++;
 			}
-			ii++;
+			j++;
 		}
 	}
 	else
