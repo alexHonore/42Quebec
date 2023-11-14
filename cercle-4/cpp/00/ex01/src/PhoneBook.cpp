@@ -1,6 +1,8 @@
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void){
+    this->_contact_index = 0;
+    this->_nb_contacts = 0;
     return;
 }
 
@@ -10,8 +12,6 @@ PhoneBook::~PhoneBook(void){
 
 void PhoneBook::start(void){
     std::string buffer = "";
-    this->_contact_index = 0;
-    this->_nb_contacts = 0;
     std::cout << "|---------- My PhoneBook!! -----------|" << std::endl;
     std::cout << "| Type one of the following:          |" << std::endl;
     std::cout << "|     [ADD]    [SEARCH]    [EXIT]     |" << std::endl;
@@ -20,6 +20,8 @@ void PhoneBook::start(void){
     {
         std::cout << "> ";
         getline(std::cin, buffer);
+        if (std::cin.eof())
+            return;
         if (buffer == "ADD")
             this->_add();
         else if (buffer == "SEARCH")
@@ -41,6 +43,7 @@ void PhoneBook::_add(void){
         if (this->_contact_index >= 8)
             this->_contact_index = 0;
         this->_contacts[this->_contact_index].add_contact();
+        _contact_index++;
         // pop the contact[0], loop all contacts and decrease them,
         // then, append new contact as constacts[nb_contact]
     }
