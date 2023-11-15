@@ -19,9 +19,8 @@ void PhoneBook::start(void){
     while (1)
     {
         std::cout << "> ";
-        getline(std::cin, buffer);
-        if (std::cin.eof())
-            return;
+        if (!std::getline(std::cin, buffer))
+            exit(1);
         if (buffer == "ADD")
             this->_add();
         else if (buffer == "SEARCH")
@@ -60,7 +59,8 @@ void PhoneBook::_search(void){
     }
     std::cout << "|-------------------------------------------|" << std::endl;
     std::cout << "Type the index> ";
-    getline(std::cin, ans);
+    if (!std::getline(std::cin, ans))
+            exit(1);
     for(int i = 0; i < (int)ans.length(); i++){
         if (std::isdigit(ans[i]) == 0){
             std::cout << "Please put an index from the tab..." << std::endl;
