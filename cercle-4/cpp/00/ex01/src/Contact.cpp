@@ -13,7 +13,8 @@ std::string Contact::_ask_data(std::string msg){
     {
         std::cout << msg << std::endl;
         std::cout << "> ";
-        std::getline(std::cin, buff);
+        if (!std::getline(std::cin, buff))
+            exit(1);
     }
     return buff;
 }
@@ -42,6 +43,9 @@ void Contact::add_contact(void){
     this->_nickname = Contact::_ask_data("What's your nickname?");
     this->_phone_number = Contact::_ask_data("What's your phone number?");
     this->_darkest_secret = Contact::_ask_data("What's your darkest secret?");
+    // if (!this->_f_name || !this->_l_name || !this->_nickname
+    //     || !this->_phone_number || !this->_darkest_secret)
+        
     std::cout << std::endl << "Contact successfully added!" << std::endl;
 }
 
