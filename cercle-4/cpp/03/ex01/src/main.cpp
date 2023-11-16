@@ -3,22 +3,19 @@
 
 int main()
 {
-    ScavTrap	temp("Daniel");
+    ScavTrap	tmp("Daniel");
 	ScavTrap	Daniel("No name");
 
-	/* Assignment check */
-	temp.setAtkDmg(55);
-	Daniel = temp;
+	tmp.setAtkDmg(55);
+	Daniel = tmp;
 
-	/* Info */
-	std::cout << "\n---------- ScavTrap Daniel ----------" << std::endl;
+	std::cout << "\n--------- ScavTrap Daniel ---------" << std::endl;
 	std::cout << "Hitpoints: " << Daniel.getHit() << " ";
 	std::cout << "Energy: " << Daniel.getEnergy() << " ";
 	std::cout << "Attack Damage: " << Daniel.getAtkDmg() << " ";
 	std::cout << "Status: Active" << std::endl;
 
-	/* Test */
-	std::cout << "\nStart attacking...\n" << std::endl;
+	std::cout << "\n-- Start attack --\n" << std::endl;
 
 	Daniel.attack("Sharks");
 	Daniel.attack("Pirates");
@@ -30,8 +27,8 @@ int main()
 	Daniel.attack("Lions");
 	Daniel.attack("Kings");
 
-	std::cout << "\nFights are over. Guarding time...\n" << std::endl;
+	std::cout << "\nGuarding time\n" << std::endl;
 	Daniel.guardGate();
-	std::cout << "\nGuareded too much...Enough!\n" << std::endl;
+	std::cout << "\nStop Guarding\n" << std::endl;
     return (0);
 }

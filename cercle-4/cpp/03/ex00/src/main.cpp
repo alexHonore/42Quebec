@@ -4,7 +4,6 @@ int main()
 {
     ClapTrap	Jack("Jack");
 	
-	/* Info */
 	Jack.setAtkDmg(2);
 	std::cout << "\n---------- ClapTrap Jack ----------" << std::endl;
 	std::cout << "Hitpoints: " << Jack.getHit() << " ";
@@ -12,8 +11,7 @@ int main()
 	std::cout << "Attack Damage: " << Jack.getAtkDmg() << " ";
 	std::cout << " Status: Active" << std::endl;
 
-	/* Test */
-	std::cout << "\nStart attacking...\n" << std::endl;
+	std::cout << "\n-- Start attack --\n" << std::endl;
 
 	Jack.attack("Sharks");
 	Jack.attack("Pirates");
