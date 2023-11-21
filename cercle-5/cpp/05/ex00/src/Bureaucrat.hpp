@@ -15,21 +15,25 @@ class Bureaucrat {
         Bureaucrat(std::string name, int grade);
         ~Bureaucrat();
 
-        const std::string getName();
-        int getGrade();
+        const std::string & getName() const;
+        int getGrade() const;
         void incrementGrade();
         void decrementGrade();
 
         class GradeTooHighException : public std::exception{
             public:
-                virtual const char *what() const throw();
+                virtual const char *what() const throw(){
+                    return "Bureaucrat::GradeTooHighException";
+                }
         };
         class GradeTooLowException : public std::exception{
             public:
-                virtual const char *what() const throw();
+                virtual const char *what() const throw(){
+                    return "Bureaucrat::GradeTooLowException";
+                }
         };
 };
-std::ostream & operator<<(std::ostream out, const Bureaucrat & rhs);
+std::ostream & operator<<(std::ostream &out, const Bureaucrat & rhs);
 
 
 #endif
