@@ -14,29 +14,41 @@ Form::Form(const Form &src) : _name(src._name), _signGrade(src._signGrade), _exe
 
 }
 Form & Form::operator=(const Form & rhs){
-    this->_execGrade = rhs._execGrade;
-    this->_signGrade = rhs._signGrade;
     this->_isSigned = rhs._isSigned;
     return *this;
 }
 Form::~Form(){
 
 }
+void Form::setIsSigned(bool isSigned){
+    this->_isSigned = isSigned; 
+}
 void Form::beSigned(Bureaucrat b){
-
+    if (this->getIsSigned()){
+        std::cout << "Already signed." << std::endl;
+        return;
+    }
+    if (b.getGrade() <= this->getSignGrade()){
+        this->setIsSigned(true);
+        b.signForm(*this);
+    }
+    else{
+        b.signForm(*this);
+        throw Form::GradeTooLowException();
+    }
 }
-const std::string Form::getName(){
-
+const std::string Form::getName()const{
+    return this->_name;
 }
-bool Form::getIsSigned(){
-
+bool Form::getIsSigned()const{
+    return this->_isSigned;
 }
-const int Form::getSignGrade(){
-
+int Form::getSignGrade()const{
+    return this->_signGrade;
 }
-const int Form::getExecGrade(){
-
+int Form::getExecGrade()const{
+    return this->_execGrade;
 }
 std::ostream & operator<<(std::ostream &out, const Form & rhs){
-
+    return out << rhs.getName() << ", Sign grade: " << rhs.getSignGrade() << ". Exec grade: " << rhs.getExecGrade() << "." << std::endl;
 }
