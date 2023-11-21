@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 int main()
 {
@@ -8,7 +8,7 @@ int main()
         Bureaucrat b1 = Bureaucrat("Promotion tryhard", 4);
         Bureaucrat b2 = Bureaucrat("Test2", 148);
         Bureaucrat b3 = Bureaucrat();
-        Form form = Form();
+        AForm form = AForm();
         b3 = b2;
         std::cout << "--------------------" << std::endl;
         form.beSigned(b1);
