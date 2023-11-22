@@ -24,8 +24,8 @@ const std::string & ShrubberyCreationForm::getTarget(){
 void ShrubberyCreationForm::execute(const Bureaucrat & executor)const{
     std::ofstream outfile;
 	
+    this->isExecutable(executor);
     outfile.open((this->getName() + "_shrubbery.txt").c_str());
-    isExecutable(executor);
     if (outfile && outfile.is_open()){
         outfile << "                      v .   ._, |_  .," << std::endl;
         outfile << "           `-._\\/  .  \\ /    |/_" << std::endl;

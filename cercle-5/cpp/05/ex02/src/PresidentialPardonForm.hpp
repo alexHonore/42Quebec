@@ -7,7 +7,7 @@
 class Bureaucrat;
 class PresidentialPardonForm : public virtual AForm {
     private:
-        const std::string _target;
+        std::string _target;
     protected:
     public:
         PresidentialPardonForm();

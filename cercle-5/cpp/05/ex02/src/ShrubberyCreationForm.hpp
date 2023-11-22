@@ -9,7 +9,7 @@
 class Bureaucrat;
 class ShrubberyCreationForm : public virtual AForm {
     private:
-        const std::string _target;
+        std::string _target;
     protected:
     public:
         ShrubberyCreationForm();

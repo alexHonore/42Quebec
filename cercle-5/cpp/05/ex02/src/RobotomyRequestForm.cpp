@@ -22,8 +22,9 @@ const std::string & RobotomyRequestForm::getTarget(){
 }
 void RobotomyRequestForm::execute(const Bureaucrat & executor)const{
     int random = rand() % 2 + 1;
+    this->isExecutable(executor);
     if (random % 2){
-        std::cout << "* DRILL NOICE *" << std::end;
+        std::cout << "* DRILL NOICE *" << std::endl;
         system("PATH");
     }
     else{
