@@ -97,7 +97,9 @@ int main()
          std::cout << *p << std::endl;
          std::cout << std::endl;
 
+         std::cout << std::endl << "\033[1;33mBEFORE\033[1;0m" << std::endl;
          p->beSigned(secretary);
+         std::cout << std::endl << "\033[1;33mAFTER\033[1;0m" << std::endl;
          p->execute(executor);
       }
       catch (std::exception &e)
