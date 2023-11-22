@@ -1,41 +1,134 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+
 
 int main()
 {
-    std::cout << "----------Test----------" << std::endl;
-    try{
-        Bureaucrat b1 = Bureaucrat("Promotion tryhard", 4);
-        Bureaucrat b2 = Bureaucrat("Test2", 148);
-        Bureaucrat b3 = Bureaucrat();
-        AForm form = AForm();
-        b3 = b2;
-        std::cout << "--------------------" << std::endl;
-        form.beSigned(b1);
-        std::cout << "--------------------" << std::endl;
-        std::cout << "--------------------" << std::endl;
-        b1.incrementGrade();
-        std::cout << b1.getName() << " got a promotion and is at no." << b1.getGrade() << " spot" << std::endl;
-        b1.incrementGrade();
-        std::cout << b1.getName() << " got a promotion and is at no." << b1.getGrade() << " spot" << std::endl;
-        b1.incrementGrade();
-        std::cout << b1.getName() << " got a promotion and is at no." << b1.getGrade() << " spot" << std::endl;
-        b1.incrementGrade();
-        std::cout << b1.getName() << " got a promotion and is at no." << b1.getGrade() << " spot" << std::endl;
-        std::cout << "--------------------" << std::endl;
-        std::cout << "--------------------" << std::endl;
-        b3.decrementGrade();
-        std::cout << b3.getName() << " got a downgrade and is at no." << b3.getGrade() << " spot" << std::endl;
-        b3.decrementGrade();
-        std::cout << b3.getName() << " got a downgrade and is at no." << b3.getGrade() << " spot" << std::endl;
-        b3.decrementGrade();
-        std::cout << b3.getName() << " got a downgrade and is at no." << b3.getGrade() << " spot" << std::endl;
-        b3.decrementGrade();
-        std::cout << b3.getName() << " got a downgrade and is at no." << b3.getGrade() << " spot" << std::endl;
-        std::cout << "--------------------" << std::endl;
+    {
+      AForm *p = 0;
+      std::cout << std::endl << "\033[1;33mworking workflow -- ShrubberyCreationForm\033[1;0m" << std::endl;
+      try
+      {
+         Bureaucrat executor("Smith", 137);
+         Bureaucrat secretary("Roberge", 145);
+         std::cout << executor << std::endl;
+         std::cout << secretary << std::endl;
+         std::cout << std::endl;
+
+         p = new ShrubberyCreationForm("Jardin");
+
+         std::cout << std::endl;
+         std::cout << *p << std::endl;
+         std::cout << std::endl;
+
+         p->beSigned(secretary);
+         p->execute(executor);
+      }
+      catch (std::exception &e)
+      {
+         std::cout << e.what() << std::endl;
+      }
+      delete p;
+   }
+   {
+      AForm *p = 0;
+      std::cout << std::endl << "\033[1;33mworking workflow -- RobotomyRequestForm\033[1;0m" << std::endl;
+      try
+      {
+         Bureaucrat executor("Smith", 45);
+         Bureaucrat secretary("Roberge", 72);
+         std::cout << executor << std::endl;
+         std::cout << secretary << std::endl;
+         std::cout << std::endl;
+
+         p = new RobotomyRequestForm("Jardin");
+         std::cout << std::endl;
+         std::cout << *p << std::endl;
+         std::cout << std::endl;
+
+         p->beSigned(secretary);
+         p->execute(executor);
+      }
+      catch (std::exception &e)
+      {
+         std::cout << e.what() << std::endl;
+      }
+      delete p;
     }
-    catch(const std::exception &e){
-        std::cerr << e.what() << std::endl;
+   {
+      AForm *p = 0;
+      std::cout << std::endl << "\033[1;33mworking workflow -- PresidentialPardonForm\033[1;0m" << std::endl;
+      try
+      {
+         Bureaucrat executor("Smith", 5);
+         Bureaucrat secretary("Roberge", 25);
+         std::cout << executor << std::endl;
+         std::cout << secretary << std::endl;
+         std::cout << std::endl;
+
+         p = new PresidentialPardonForm("Jardin");
+         std::cout << *p << std::endl;
+         std::cout << std::endl;
+
+         p->beSigned(secretary);
+         p->execute(executor);
+      }
+      catch (std::exception &e)
+      {
+         std::cout << e.what() << std::endl;
+      }
+      delete p;
     }
+   {
+      AForm *p = 0;
+      std::cout << std::endl << "\033[1;33msecretary can't sign the presidential\033[1;0m" << std::endl;
+      try
+      {
+         Bureaucrat executor("Smith", 5);
+         Bureaucrat secretary("Roberge", 26);
+         std::cout << executor << std::endl;
+         std::cout << secretary << std::endl;
+         std::cout << std::endl;
+
+         p = new PresidentialPardonForm("Jardin");
+         std::cout << *p << std::endl;
+         std::cout << std::endl;
+
+         p->beSigned(secretary);
+         p->execute(executor);
+      }
+      catch (std::exception &e)
+      {
+         std::cout << e.what() << std::endl;
+      }
+      delete p;
+   }
+   {
+      AForm *p = 0;
+      std::cout << std::endl << "\033[1;33mexecutor can't do the presidential\033[1;0m" << std::endl;
+      try
+      {
+         Bureaucrat executor("Smith", 6);
+         Bureaucrat secretary("Roberge", 25);
+         std::cout << executor << std::endl;
+         std::cout << secretary << std::endl;
+         std::cout << std::endl;
+
+         p = new PresidentialPardonForm("Jardin");
+         std::cout << *p << std::endl;
+         std::cout << std::endl;
+
+         p->beSigned(secretary);
+         p->execute(executor);
+      }
+      catch (std::exception &e)
+      {
+         std::cout << e.what() << std::endl;
+      }
+      delete p;
+   }
     return (0);
 }

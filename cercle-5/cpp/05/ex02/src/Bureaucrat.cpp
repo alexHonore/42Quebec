@@ -54,7 +54,7 @@ std::ostream & operator<<(std::ostream &out, const Bureaucrat & rhs){
     return out << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << "." << std::endl;
 }
 
-void Bureaucrat::signForm(AForm f){
+void Bureaucrat::signForm(AForm & f)const{
     try{
         f.beSigned(*this);
     }

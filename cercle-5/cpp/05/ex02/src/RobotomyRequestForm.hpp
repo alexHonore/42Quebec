@@ -5,7 +5,7 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 class Bureaucrat;
-class RobotomyRequestForm : public AForm {
+class RobotomyRequestForm : public virtual AForm {
     private:
         const std::string _target;
     protected:

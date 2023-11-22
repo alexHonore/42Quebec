@@ -23,7 +23,7 @@ AForm::~AForm(){
 void AForm::setIsSigned(bool isSigned){
     this->_isSigned = isSigned; 
 }
-void AForm::beSigned(Bureaucrat b){
+void AForm::beSigned(const Bureaucrat & b){
     if (this->getIsSigned()){
         std::cout << "Already signed." << std::endl;
         return;
@@ -50,11 +50,11 @@ int AForm::getExecGrade()const{
     return this->_execGrade;
 }
 std::ostream & operator<<(std::ostream &out, const AForm & rhs){
-    return out << rhs.getName() << ", Sign grade: " << rhs.getSignGrade() << ". Exec grade: " << rhs.getExecGrade() << "." << std::endl;
+    return out << rhs.getName() << ", Signed?: " << rhs.getIsSigned() << ", Sign grade: " << rhs.getSignGrade() << ". Exec grade: " << rhs.getExecGrade() << "." << std::endl;
 }
 void AForm::isExecutable(const Bureaucrat & b) const{
     if (b.getGrade() > this->getExecGrade())
-        throw (GradeTooLowException("Bureaucrat cannot execute the form."));
+        throw (GradeTooLowException());
     if (this->getIsSigned() == false)
-        throw (NotSignedException("The form isn't signed."));
+        throw (NotSignedException());
 }

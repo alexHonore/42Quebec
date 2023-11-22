@@ -24,7 +24,7 @@ SRCDIR	=	src/
 
 # Dir and file names
 NAME	=	ex02
-SRCS	=	main.cpp Bureaucrat.cpp AForm.cpp
+SRCS	=	main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 # OBJS	=	$(SRCS:.cpp=.o)
 OBJS		= $(addprefix bin/, ${SRCS:.cpp=.o})
 # OBJS		= $(subst ./, bin, $(SRCS:.c=.o))

@@ -19,7 +19,7 @@ class AForm {
         AForm(const AForm &src);
         AForm & operator=(const AForm & rhs);
         virtual ~AForm();
-        void beSigned(Bureaucrat b);
+        void beSigned(const Bureaucrat & b);
         const std::string getName()const;
         bool getIsSigned()const;
         void setIsSigned(bool isSigned);
