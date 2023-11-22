@@ -2,6 +2,8 @@
 #define ROBOTOMYREQUESTFORM_HPP
 
 #include <iostream>
+#include <stdlib.h>
+#include <windows.h>
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 class Bureaucrat;
@@ -17,6 +19,12 @@ class RobotomyRequestForm : public virtual AForm {
         ~RobotomyRequestForm();
         const std::string & getTarget();
         virtual void execute(const Bureaucrat & executor)const;
+        class OperationNotPassException : public std::exception{
+            public:
+                virtual const char * what() const throw(){
+                    return "AForm::OperationNotPassException -> The robotomy did not work...";
+                }
+        };
 };
 
 #endif

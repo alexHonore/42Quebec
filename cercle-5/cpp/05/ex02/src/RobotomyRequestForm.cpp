@@ -10,15 +10,23 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm & src) : AFor
 
 }
 RobotomyRequestForm & RobotomyRequestForm::operator=(const RobotomyRequestForm & rhs){
-    (void)rhs;
-    return *this;
+    if (this != &rhs)
+		this->_target = rhs._target;
+	return *this;
 }
 RobotomyRequestForm::~RobotomyRequestForm(){
 
 }
 const std::string & RobotomyRequestForm::getTarget(){
-
+    return this->_target;
 }
 void RobotomyRequestForm::execute(const Bureaucrat & executor)const{
-
+    int random = rand() % 2 + 1;
+    if (random % 2){
+        std::cout << "* DRILL NOICE *" << std::end;
+        system("PATH");
+    }
+    else{
+        throw (OperationNotPassException());
+    }
 }

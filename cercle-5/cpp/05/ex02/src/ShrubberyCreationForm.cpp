@@ -10,7 +10,8 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm & src) 
 
 }
 ShrubberyCreationForm & ShrubberyCreationForm::operator=(const ShrubberyCreationForm & rhs){
-    (void)rhs;
+    if (this != &rhs)
+		this->_target = rhs._target;
 	return *this;
 }
 ShrubberyCreationForm::~ShrubberyCreationForm(){
@@ -19,26 +20,26 @@ ShrubberyCreationForm::~ShrubberyCreationForm(){
 const std::string & ShrubberyCreationForm::getTarget(){
     return this->_target;
 }
+// std::string::c_str() transform a string to a char * (c compatible)
 void ShrubberyCreationForm::execute(const Bureaucrat & executor)const{
-	std::string	file = this->getName() + "_shrubbery.txt";
-    std::ofstream fs(file, std::ios::app);
-    // std::ofstream fs(file.c_str(), std::ios::out | std::ios::trunc);
-	// fs.exceptions(fs.failbit);
+    std::ofstream outfile;
+	
+    outfile.open((this->getName() + "_shrubbery.txt").c_str());
     isExecutable(executor);
-    if (fs && fs.isOpen()){
-        fs << "                      v .   ._, |_  .," << std::endl;
-        fs << "           `-._\\/  .  \\ /    |/_" << std::endl;
-        fs << "               \\  _\\, y | \\//" << std::endl;
-        fs << "         _\\_.___\\, \\/ -.\\||" << std::endl;
-        fs << "           `7-,--.`._||  / / ," << std::endl;
-        fs << "           /'     `-. `./ / |/_.'" << std::endl;
-        fs << "                     |    |//" << std::endl;
-        fs << "                     |_    /" << std::endl;
-        fs << "                     |-   |" << std::endl;
-        fs << "                     |   =|" << std::endl;
-        fs << "                     |    |" << std::endl;
-        fs << "--------------------/ ,  . \\--------._" << std::endl;
-	    fs.close();
+    if (outfile && outfile.is_open()){
+        outfile << "                      v .   ._, |_  .," << std::endl;
+        outfile << "           `-._\\/  .  \\ /    |/_" << std::endl;
+        outfile << "               \\  _\\, y | \\//" << std::endl;
+        outfile << "         _\\_.___\\, \\/ -.\\||" << std::endl;
+        outfile << "           `7-,--.`._||  / / ," << std::endl;
+        outfile << "           /'     `-. `./ / |/_.'" << std::endl;
+        outfile << "                     |    |//" << std::endl;
+        outfile << "                     |_    /" << std::endl;
+        outfile << "                     |-   |" << std::endl;
+        outfile << "                     |   =|" << std::endl;
+        outfile << "                     |    |" << std::endl;
+        outfile << "--------------------/ ,  . \\--------._" << std::endl;
+	    outfile.close();
     }
     else{
         std::cerr << "Cannot access the file." << std::endl;
