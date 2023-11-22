@@ -62,7 +62,7 @@ void Bureaucrat::signForm(AForm & f)const{
         std::cout << this->_name << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
     }
 }
-void executeForm(const AForm & form){
+void Bureaucrat::executeForm(const AForm & form){
     if (this->getGrade() > form.getReqToExec()) {
 		std::cout << this->_name << " couldn't execute the form: " << form.getName() << ", because it's grade is too low." << std::endl;
 		throw AForm::GradeTooLowException();
