@@ -21,13 +21,13 @@ Span &Span::operator=(const Span& rhs) {
     return (*this);
 }
 
-void Span::addNumber(int num) {
+void Span::addNumberRange(int num) {
     if (this->_vec.size() == this->_N)
         throw Span::VectorFullException();
     this->_vec.push_back(num);
 }
 unsigned int Span::shortestSpan() {
-    if (this->_N < 2)
+    if (this->_vec.size() < 2)
         throw Span::SizeTooSmallException();
     unsigned int minSpan = UINT_MAX; // largest possible span between two numbers
     for (unsigned int i = 0; i < this->_vec.size(); i++)
@@ -43,11 +43,11 @@ unsigned int Span::shortestSpan() {
     return (minSpan);
 }
 unsigned int Span::longestSpan() {
-    if (this->_N < 2)
+    if (this->_vec.size() < 2)
         throw Span::SizeTooSmallException();
     int min = *(std::min_element(this->_vec.begin(), this->_vec.end()));
     int max = *(std::max_element(this->_vec.begin(), this->_vec.end()));
-    return (max - min);
+    return (static_cast<unsigned int>(max - min));
 }
 void Span::fill(void) {
     this->_vec.resize(this->_N);

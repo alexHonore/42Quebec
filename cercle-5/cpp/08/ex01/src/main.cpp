@@ -1,7 +1,8 @@
 #include "Span.hpp"
 
 int main() {
-    std::cout << "create empty span max size 5\ntry shortestSpan\n";
+    std::cout << std::endl << "\033[1;31mSpan SP, SIZE 5\033[1;0m" << std::endl;
+    std::cout << std::endl << "\033[1;32mSHORTEST SPAN \033[1;0m" << std::endl;
 	Span sp = Span(5);
 	try
 	{
@@ -11,7 +12,7 @@ int main() {
 	{
 		std::cout << e.what() << std::endl;
 	}
-	std::cout << "try longest span\n";
+	std::cout << std::endl << "\033[1;32mLONGEST SPAN\033[1;0m" << std::endl;
 	try
 	{
 		std::cout << sp.longestSpan() << std::endl;
@@ -20,12 +21,12 @@ int main() {
 	{
 		std::cout << e.what() << std::endl;
 	}
-	std::cout << "insert 7 numbers\n";
+	std::cout << std::endl << "\033[1;32mINSERT 7 NUMBERS\033[1;0m" << std::endl;
 	try
 	{
 		for (int i = 0; i < 7; i++)
 		{
-			sp.addNumber(i);
+			sp.addNumberRange(i);
 		}
 	}
 	catch (const std::exception & e)
@@ -41,37 +42,30 @@ int main() {
 	{
 		std::cout << e.what() << std::endl;
 	}
-
-	std::cout << "try to insert 12000 elements usinge addRange\n";
-	std::vector<int> vektor (12000, 42);
-	for (unsigned int i = 0;  i < vektor.size(); i++)
-		vektor[i] = i;
-
+	std::cout << std::endl << "\033[1;32mINSERT 12K NUMBERS\033[1;0m" << std::endl;
 	try
 	{
-		sp.addRange(vektor);
+		sp.addNumberRange(12000);
 	}
 	catch(const std::exception & e)
 	{
 		std::cout << e.what() << std::endl;
 	}
-
-	std::cout << "create a span with maxsize 15.000; test copy constructor\n";
-	Span bsp(15000);
-	Span bigsp(bsp);
+    std::cout << std::endl << "\033[1;31mSpan ALOT WITH 15K NUMBERS & COPY IT\033[1;0m" << std::endl;
+	Span alot(15000);
+	Span bigsp(alot);
 	try
 	{
-		bigsp.addRange(vektor);
+		bigsp.addNumberRange(15000);
 	}
 	catch(const std::exception & e)
 	{
 		std::cout << e.what() << std::endl;
 	}
-
 	try
 	{
-		std::cout << "shortest span is: " << bigsp.shortestSpan() << std::endl;
-		std::cout << "longest span is: " << bigsp.longestSpan() << std::endl;
+		std::cout << "Shortest span is: " << bigsp.shortestSpan() << std::endl;
+		std::cout << "Longest span is: " << bigsp.longestSpan() << std::endl;
 	}
 	catch (const std::exception & e)
 	{

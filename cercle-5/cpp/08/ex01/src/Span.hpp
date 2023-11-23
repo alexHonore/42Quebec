@@ -19,7 +19,7 @@ class Span {
         Span&    operator=(const Span& rhs);
         ~Span();
 
-        void addNumber(int num);
+        void addNumberRange(int num);
         unsigned int shortestSpan();
         unsigned int longestSpan();
 
@@ -30,13 +30,13 @@ class Span {
         class VectorFullException : public std::exception {
             public:
                 virtual const char *what() const throw(){
-                    return ("Span exception: vector is full.");
+                    return ("Span::VectorFullException: Vector is full.");
                 }
         };
         class SizeTooSmallException : public std::exception {
             public:
                 virtual const char *what() const throw(){
-                    return ("Span exception: vector size is too small.");
+                    return ("Span::SizeTooSmallException: Vector size is too small.");
                 }
         };
 };
