@@ -1,6 +1,6 @@
 #include "iter.hpp"
 
-int main(void) {
+int main() {
 	std::cout << "Int array" << std::endl;
 	int numbers[] = {-6514, -1, 0, 12, 1564};
 	iter(numbers, 5, print);

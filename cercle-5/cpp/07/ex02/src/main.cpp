@@ -1,6 +1,6 @@
 #include "Array.hpp"
 
-int main(void) {
+int main() {
 	std::cout << std::endl << "\033[1;32mTESTS\033[1;0m" << std::endl;
     int * a = new int();
     std::cout << *a << std::endl;
