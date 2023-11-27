@@ -30,6 +30,7 @@ void Form::beSigned(Bureaucrat b){
     }
     if (b.getGrade() <= this->getSignGrade()){
         this->setIsSigned(true);
+        std::cout << b.getName() << " signed " << this->getName() << std::endl;
         b.signForm(*this);
     }
     else{

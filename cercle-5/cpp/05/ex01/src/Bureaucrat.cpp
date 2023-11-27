@@ -3,7 +3,7 @@
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150){
     std::cout << "Bureaucrat Default Constructor of : " << this->_name << std::endl;
 }
-Bureaucrat::Bureaucrat(const Bureaucrat & src){
+Bureaucrat::Bureaucrat(const Bureaucrat & src) : _name(src._name), _grade(src._grade){
     std::cout << "Bureaucrat Copy Constructor of : " << this->_name << std::endl;
     if (src._grade < 1)
         throw(GradeTooHighException());
