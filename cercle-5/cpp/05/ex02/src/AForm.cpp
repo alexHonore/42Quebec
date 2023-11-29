@@ -34,7 +34,6 @@ void AForm::beSigned(const Bureaucrat & b){
     }
     else{
         b.signForm(*this);
-        // std::cerr << "Cannot sign." << std::endl;
         throw AForm::GradeTooLowException();
     }
 }
