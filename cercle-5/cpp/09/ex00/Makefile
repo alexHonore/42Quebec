@@ -23,8 +23,8 @@ OBJDIR	=	bin/
 SRCDIR	=	src/
 
 # Dir and file names
-NAME	=	ex00
-SRCS	=	main.cpp BitcoinExchange.cpp
+NAME	=	btc
+SRCS	=	main.cpp #BitcoinExchange.cpp
 # OBJS	=	$(SRCS:.cpp=.o)
 OBJS		= $(addprefix bin/, ${SRCS:.cpp=.o})
 # OBJS		= $(subst ./, bin, $(SRCS:.c=.o))
