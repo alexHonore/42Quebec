@@ -1,5 +1,11 @@
 #include "BitcoinExchange.hpp"
 
+#include <iostream>
+#include <map>
+#include <unordered_map>
+#include <string>
+#include <sstream>
+
 BitcoinExchange::BitcoinExchange(){
 
 }

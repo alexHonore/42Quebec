@@ -2,10 +2,11 @@
 # define BITCOINEXCHANGE_CPP
 
 #include <iostream>
+#include <string>
 #include <map>
 #include <unordered_map>
-#include <string>
 #include <sstream>
+#include <iomanip>
 
 class BitcoinExchange {
     private:
