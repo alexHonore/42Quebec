@@ -2,7 +2,7 @@
 
 int main(int argc, char** argv) {
     if (argc != 2){
-        std::cout << "Error: Only ont argument is valid (the operation)." << std::endl;
+        std::cout << "Error: Only one argument is valid (the operation)." << std::endl;
         return 1;
     }
     try{

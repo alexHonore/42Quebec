@@ -23,7 +23,7 @@ OBJDIR	=	bin/
 SRCDIR	=	src/
 
 # Dir and file names
-NAME	=	ex02
+NAME	=	PmergeMe
 SRCS	=	main.cpp PmergeMe.cpp
 # OBJS	=	$(SRCS:.cpp=.o)
 OBJS		= $(addprefix bin/, ${SRCS:.cpp=.o})

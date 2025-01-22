@@ -23,7 +23,7 @@ OBJDIR	=	bin/
 SRCDIR	=	src/
 
 # Dir and file names
-NAME	=	ex01
+NAME	=	RPN
 SRCS	=	main.cpp RPN.cpp
 # OBJS	=	$(SRCS:.cpp=.o)
 OBJS		= $(addprefix bin/, ${SRCS:.cpp=.o})

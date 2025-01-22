@@ -1,10 +1,10 @@
 #include "BitcoinExchange.hpp"
 
-#include <iostream>
-#include <map>
-#include <unordered_map>
-#include <string>
-#include <sstream>
+// #include <iostream>
+// #include <map>
+// #include <unordered_map>
+// #include <string>
+// #include <sstream>
 
 BitcoinExchange::BitcoinExchange(){
 
@@ -35,36 +35,56 @@ std::string BitcoinExchange::trimSpaces(const std::string &str){
 
     return trimed_str;
 }
-bool isPastDate(float year, float month, float day){
-    if (year && month && day)
+bool BitcoinExchange::isPastDate(const std::string &date){
+    int year = stoi(date.substr(0, 4));
+    int month = stoi(date.substr(5, 2));
+    int day = stoi(date.substr(8, 2));
+
+    time_t seconds = time(0);
+    struct tm* current_time = localtime(&seconds); 
+    int currentYear = current_time->tm_year + 1900;
+    int currentMonth = current_time->tm_mon + 1;
+    int currentDay = current_time->tm_mday;
+        // std::cout << day << " less than " << currentDay << std::endl;
+    if (year < currentYear){
+        // std::cout << year << " less than " << currentYear << std::endl;
         return true;
-    else
-        return false;
+    }
+    else if (year == currentYear && month < currentMonth){
+        // std::cout << month << " less than " << currentMonth << std::endl;
+        return true;
+    }
+    else if (month == currentMonth && day <= currentDay){
+        return true;
+    }
+    std::cerr << "Error: future date! " << year << "-" << month << "-" << day << std::endl;
+    // throw ("ERROR: the file contain a future date!");
+    return false;
 }
 bool BitcoinExchange::isValidDateFormat(const std::string &date){
     if(date.empty()){
         std::cerr << "Error:empty!" << std::endl;
         return false;
     }
-    if (date.length() != 10 || date[4] != '-' || date[7] != '-'){
-        std::cerr << "Error: not a valid date: " << date << std::endl;                                                     
-        return false;
-    }
-    for (int i = 0; i < 10; ++i) {
-        if (i == 4 || i == 7)
-            continue; 
-        if (!std::isdigit(date[i])){
-            std::cerr << "Error: not a valid date: " << date << std::endl;
-            return false;
-        }
-    }
+    // if (date.length() != 10 || date[4] != '-' || date[7] != '-'){
+    //     std::cerr << "Error: not a valid date: " << date << std::endl;                                                     
+    //     return false;
+    // }
+    // for (int i = 0; i < 10; ++i) {
+    //     if (i == 4 || i == 7)
+    //         continue; 
+    //     if (!std::isdigit(date[i])){
+    //         std::cerr << "Error: not a valid date: " << date << std::endl;
+    //         return false;
+    //     }
+    // }
 
     float year = ft_stof(date.substr(0, 4));
     float month = ft_stof(date.substr(5, 2));
     float day = ft_stof(date.substr(8, 2));
 
-	if(year < 2009 || year > 2024){
-         std::cerr << "Error: not a valid year: " << year << std::endl;
+	if(year < 2009){
+         std::cerr << "Error: BTC cannot have a value before 2009: " << year << std::endl;
 		return false;
     }
     if (month < 1 || month > 12){
@@ -89,7 +109,7 @@ bool BitcoinExchange::isValidDateFormat(const std::string &date){
             return false;
         }
     }
-    return isPastDate(year, month, day); // looks if the valid date is not in the future
+    return true;
 }
 bool BitcoinExchange::isValidValue(const std::string &value){
     size_t i = 0;
@@ -105,10 +125,10 @@ bool BitcoinExchange::isValidValue(const std::string &value){
             isvalid = true;
         else if (i > 0 && value[i] == '.' && flag == 0) 
             flag++;
-        else {
-            std::cerr << "Error: not a valid number: " << value << std::endl;                                                  
-            return false;
-        }
+        // else {
+        //     std::cerr << "Error: not a valid number: " << value << std::endl;                                                  
+        //     return false;
+        // }
         i++;
     }
     if (!isvalid || (value.find('.') != std::string::npos && !std::isdigit(value.back()))) {
@@ -145,7 +165,7 @@ float BitcoinExchange::getRateValueFromData(const std::string &date){
 }
 void BitcoinExchange::parseFile(const std::string &file_name){
     std::ifstream file(file_name);
-	std::ifstream data_file("data.csv", std::ifstream::in);
+	std::ifstream data_file("src/data.csv", std::ifstream::in);
 
     if (!file.is_open())
         throw ("ERROR: Unable to open file!");
@@ -163,12 +183,13 @@ void BitcoinExchange::parseFile(const std::string &file_name){
 }
 void BitcoinExchange::ShowRatesExchange(const std::string &file_name){
     std::string line;
-    std::getline(file_name, line);
-    std::ifstream data_file("data.csv", std::ifstream::in);
+    std::ifstream file(file_name);
+    std::getline(file, line);
+    std::ifstream data_file("src/data.csv", std::ifstream::in);
 
     if (line != "date | value")
         throw("INVALID FILE FORMAT!");
-    while (std::getline(file_name, line))
+    while (std::getline(file, line))
     {
         size_t delimiter = line.find('|');
         if (delimiter == std::string::npos)
@@ -182,8 +203,11 @@ void BitcoinExchange::ShowRatesExchange(const std::string &file_name){
             continue;
         if (!this->isValidValue(value))
             continue;
+        if (!this->isPastDate(date))
+            continue;
         float rate = ft_stof(value);
         std::cout << date << " => " << value << " = " << std::setprecision(2) << rate * this->getRateValueFromData(date) << std::endl; 
     }
     data_file.close();
+    file.close();
 }
